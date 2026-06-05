@@ -1,1 +1,299 @@
+/* Paleta de colores Premium tipo Tailwind / GitHub */
+:root {
+    --bg-page: radial-gradient(circle at 50% 50%, #f8fafc 0%, #e2e8f0 100%);
+    --bg-card: #ffffff;
+    --text-primary: #0f172a;
+    --text-secondary: #475569;
+    --primary: #4f46e5;
+    --primary-hover: #4338ca;
+    --primary-glow: rgba(79, 70, 229, 0.15);
+    --border: #e2e8f0;
+    --border-focus: #4f46e5;
+    --card-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 10px 10px -5px rgba(0, 0, 0, 0.02);
+    --error-bg: #fef2f2;
+    --error-text: #991b1b;
+}
 
+body.theme-dark {
+    --bg-page: radial-gradient(circle at 50% 50%, #0f172a 0%, #020617 100%);
+    --bg-card: #1e293b;
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --primary: #6366f1;
+    --primary-hover: #4f46e5;
+    --primary-glow: rgba(99, 102, 241, 0.25);
+    --border: #334155;
+    --border-focus: #6366f1;
+    --card-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    --error-bg: #451a03;
+    --error-text: #fca5a5;
+}
+
+/* Reset y Centrado Absoluto Inteligente */
+body {
+    background: var(--bg-page);
+    color: var(--text-primary);
+    font-family: system-ui, -apple-system, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    box-sizing: border-box;
+    transition: background 0.4s ease, color 0.4s ease;
+    overflow-x: hidden;
+}
+
+/* Botón flotante superior */
+.theme-wrapper {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    z-index: 10;
+}
+
+.btn-theme {
+    background: var(--bg-card);
+    color: var(--text-primary);
+    border: 1px solid var(--border);
+    padding: 10px 20px;
+    border-radius: 9999px;
+    cursor: pointer;
+    font-weight: 600;
+    box-shadow: var(--card-shadow);
+    transition: all 0.2s ease;
+}
+
+.btn-theme:hover {
+    transform: translateY(-2px);
+    border-color: var(--border-focus);
+}
+
+.app-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* Estilo de la Tarjeta Autenticación */
+.auth-card {
+    background: var(--bg-card);
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: var(--card-shadow);
+    width: 100%;
+    max-width: 440px;
+    box-sizing: border-box;
+    border: 1px solid var(--border);
+}
+
+/* Encabezado Pro de la Marca */
+.brand-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.brand-logo {
+    background: var(--primary);
+    color: white;
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    font-weight: 800;
+    margin-bottom: 16px;
+    box-shadow: 0 4px 12px var(--primary-glow);
+}
+
+.brand-header h1 {
+    font-size: 28px;
+    margin: 0 0 8px 0;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
+
+.brand-header p {
+    color: var(--text-secondary);
+    margin: 0;
+    font-size: 15px;
+}
+
+/* Inputs con estados de enfoque interactivos */
+.input-wrapper {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.input-wrapper label {
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: var(--text-primary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.input-wrapper input {
+    padding: 14px;
+    background: var(--bg-card);
+    color: var(--text-primary);
+    border: 1.5px solid var(--border);
+    border-radius: 10px;
+    font-size: 15px;
+    outline: none;
+    transition: all 0.2s ease;
+    box-sizing: border-box;
+}
+
+.input-wrapper input:focus {
+    border-color: var(--border-focus);
+    box-shadow: 0 0 0 4px var(--primary-glow);
+}
+
+/* Botón Pro con micro-interacciones */
+.btn-action {
+    width: 100%;
+    padding: 14px;
+    background: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin-top: 10px;
+    box-shadow: 0 4px 12px var(--primary-glow);
+}
+
+.btn-action:hover {
+    background: var(--primary-hover);
+    transform: translateY(-1px);
+}
+
+.btn-action:active {
+    transform: translateY(1px);
+}
+
+/* Enlaces inferiores */
+.footer-switch {
+    text-align: center;
+    margin-top: 24px;
+    font-size: 14px;
+    color: var(--text-secondary);
+}
+
+.footer-switch a {
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.footer-switch a:hover {
+    text-decoration: underline;
+}
+
+/* Alertas estilizadas flotantes en la tarjeta */
+.toast-error {
+    background: var(--error-bg);
+    color: var(--error-text);
+    padding: 12px;
+    border-radius: 8px;
+    margin-top: 20px;
+    font-size: 14px;
+    font-weight: 600;
+    text-align: center;
+    display: none;
+}
+
+.toast-error:not(:empty) {
+    display: block;
+}
+
+/* Modificadores lógicos de control visual */
+.hidden {
+    display: none !important;
+}
+
+/* Animaciones Fluidas (Efecto Pro) */
+.animate-fade {
+    animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.96) translateY(10px); }
+    to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+/* Galería Avanzada de Avatares */
+.avatar-picker-box {
+    margin-bottom: 24px;
+}
+
+.avatar-picker-box label {
+    font-size: 13px;
+    font-weight: 600;
+    display: block;
+    margin-bottom: 8px;
+}
+
+#avatar-search {
+    padding: 10px;
+    font-size: 13px;
+    margin-bottom: 10px;
+}
+
+#avatar-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    max-height: 120px;
+    overflow-y: auto;
+    border: 1px solid var(--border);
+    padding: 10px;
+    border-radius: 10px;
+    background: rgba(0, 0, 0, 0.01);
+}
+
+.avatar-item {
+    width: 100%;
+    aspect-ratio: 1;
+    border: 2px solid transparent;
+    border-radius: 8px;
+    cursor: pointer;
+    background: #f1f5f9;
+    padding: 4px;
+    box-sizing: border-box;
+    transition: all 0.15s ease;
+}
+
+.avatar-item:hover {
+    transform: scale(1.05);
+}
+
+.avatar-item.selected {
+    border-color: var(--border-focus);
+    background: var(--primary-glow);
+    transform: scale(1.05);
+}
+
+/* Scrollbar personalizada minimalista */
+.custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background: var(--border);
+    border-radius: 10px;
+}

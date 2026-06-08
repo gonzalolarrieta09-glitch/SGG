@@ -3,75 +3,76 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SGG - Dashboard Login</title>
+    <title>SGG - Sistema de Gestión de Gastos</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body class="theme-light">
 
-    <div class="theme-wrapper">
-        <button id="theme-toggle" class="btn-theme" aria-label="Cambiar modo de color">
-            <span class="icon-sun">☀️ Mode</span>
-        </button>
-    </div>
+    <header class="header-container">
+        <button id="theme-toggle" class="btn-theme-toggle">🌙 Modo Oscuro</button>
+    </header>
 
-    <main class="app-container">
+    <main class="center-viewport">
         
-        <section id="login-section" class="auth-card active animate-fade">
-            <div class="brand-header">
-                <div class="brand-logo">$$</div>
-                <h1>Bienvenido de nuevo</h1>
-                <p>Ingresa al Sistema de Gestión de Gastos</p>
-            </div>
+        <div id="welcome-box" class="colorful-card hidden dynamic-fade">
+            <div class="card-logo">🎉</div>
+            <h1 id="welcome-text"></h1>
+            <p class="subtitle">Has ingresado correctamente al sistema.</p>
+            <button id="btn-logout" class="btn-gradient" style="margin-top: 20px;">Cerrar Sesión</button>
+        </div>
+
+        <section id="login-section" class="colorful-card dynamic-fade">
+            <div class="card-logo">$$</div>
+            <h1>¡Hola de nuevo!</h1>
+            <p class="subtitle">Gestiona tus gastos con estilo</p>
             
             <form id="login-form">
-                <div class="input-wrapper">
+                <div class="input-group">
                     <label for="username">Usuario o Correo</label>
-                    <input type="text" id="username" required placeholder="ejemplo@gmail.com">
+                    <input type="text" id="username" required placeholder="Tu usuario o correo">
                 </div>
-                <div class="input-wrapper">
+                <div class="input-group">
                     <label for="password">Contraseña</label>
                     <input type="password" id="password" required placeholder="••••••••">
                 </div>
-                <button type="submit" class="btn-action">Iniciar Sesión</button>
+                <button type="submit" class="btn-gradient">Ingresar al Sistema</button>
             </form>
             
-            <p class="footer-switch">¿No tienes una cuenta? <a href="#" id="link-to-register">Créala ahora</a></p>
-            <div id="error-message" class="toast-error" aria-live="politic"></div>
+            <p class="switch-mode-text">¿No tienes cuenta? <a href="#" id="link-to-register">Créala aquí mismo</a></p>
+            <div id="error-message" class="alert-box-error" aria-live="politic"></div>
         </section>
 
-        <section id="register-section" class="auth-card hidden animate-fade">
-            <div class="brand-header">
-                <div class="brand-logo">++</div>
-                <h1>Crear tu cuenta</h1>
-                <p>Empieza a controlar tus finanzas de forma pro</p>
-            </div>
+        <section id="register-section" class="colorful-card hidden dynamic-fade">
+            <div class="card-logo">++</div>
+            <h1>Crear Cuenta</h1>
+            <p class="subtitle">Únete a la experiencia a todo color</p>
             
             <form id="register-form">
-                <div class="input-wrapper">
+                <div class="input-group">
                     <label for="reg-username">Nombre de Usuario</label>
-                    <input type="text" id="reg-username" required placeholder="Tu alias favorito">
+                    <input type="text" id="reg-username" required placeholder="Tu alias">
                 </div>
-                <div class="input-wrapper">
+                <div class="input-group">
                     <label for="reg-email">Correo Electrónico</label>
-                    <input type="email" id="reg-email" required placeholder="tu-correo@gmail.com o @yahoo.com">
+                    <input type="email" id="reg-email" required placeholder="ejemplo@gmail.com o @yahoo.com">
                 </div>
-                <div class="input-wrapper">
+                <div class="input-group">
                     <label for="reg-password">Contraseña</label>
-                    <input type="password" id="reg-password" required placeholder="Mínimo 6 caracteres">
+                    <input type="password" id="reg-password" required placeholder="Crea tu clave secreta">
                 </div>
 
-                <div class="avatar-picker-box">
-                    <label>Personaliza tu foto de perfil</label>
-                    <input type="text" id="avatar-search" placeholder="🔍 Buscar estilo (gato, robot, ninja...)">
-                    <div id="avatar-container" class="custom-scrollbar"></div>
+                <div class="avatar-picker-section">
+                    <label>Elige tu avatar personalizado</label>
+                    <input type="text" id="avatar-search" placeholder="🔍 Busca un estilo (gato, robot, ninja...)">
+                    <div id="avatar-container" class="scroll-grid"></div>
                     <input type="hidden" id="selected-avatar-url" value="https://api.dicebear.com/7.x/bottts/svg?seed=default">
                 </div>
 
-                <button type="submit" class="btn-action">Registrar Cuenta</button>
+                <button type="submit" class="btn-gradient">Registrarme Ahora</button>
             </form>
             
-            <p class="footer-switch"><a href="#" id="link-to-login">← Volver al Inicio de Sesión</a></p>
-            <div id="reg-error-message" class="toast-error" aria-live="politic"></div>
+            <p class="switch-mode-text"><a href="#" id="link-to-login">← Volver a Iniciar Sesión</a></p>
+            <div id="reg-error-message" class="alert-box-error" aria-live="politic"></div>
         </section>
 
     </main>

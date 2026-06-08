@@ -1,299 +1,236 @@
-/* Paleta de colores Premium tipo Tailwind / GitHub */
+/* Paleta de Colores Super Vívidos y Efectos de Gradientes */
 :root {
-    --bg-page: radial-gradient(circle at 50% 50%, #f8fafc 0%, #e2e8f0 100%);
-    --bg-card: #ffffff;
-    --text-primary: #0f172a;
-    --text-secondary: #475569;
-    --primary: #4f46e5;
-    --primary-hover: #4338ca;
-    --primary-glow: rgba(79, 70, 229, 0.15);
-    --border: #e2e8f0;
-    --border-focus: #4f46e5;
-    --card-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 10px 10px -5px rgba(0, 0, 0, 0.02);
-    --error-bg: #fef2f2;
-    --error-text: #991b1b;
+    --bg-gradient: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #a1c4fd 100%);
+    --card-background: rgba(255, 255, 255, 0.95);
+    --text-primary: #2d3748;
+    --text-muted: #718096;
+    --input-border: #cbd5e0;
+    --input-focus: #ff6b6b;
+    --btn-gradient: linear-gradient(135deg, #ff6b6b 0%, #4ecdc4 100%);
+    --btn-hover: linear-gradient(135deg, #ff5252 0%, #3bc7bc 100%);
+    --shadow-preset: 0 15px 35px rgba(255, 107, 107, 0.15), 0 5px 15px rgba(0, 0, 0, 0.05);
+    --error-bg: #fff5f5;
+    --error-color: #e53e3e;
 }
 
+/* CONFIGURACIÓN AZUL MARINO OSCURO PRO */
 body.theme-dark {
-    --bg-page: radial-gradient(circle at 50% 50%, #0f172a 0%, #020617 100%);
-    --bg-card: #1e293b;
-    --text-primary: #f8fafc;
-    --text-secondary: #94a3b8;
-    --primary: #6366f1;
-    --primary-hover: #4f46e5;
-    --primary-glow: rgba(99, 102, 241, 0.25);
-    --border: #334155;
-    --border-focus: #6366f1;
-    --card-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-    --error-bg: #451a03;
-    --error-text: #fca5a5;
+    --bg-gradient: linear-gradient(135deg, #020c1b 0%, #0a192f 50%, #172a45 100%); /* Azul Marino Oscuro Premium */
+    --card-background: rgba(10, 25, 47, 0.95); /* Fondo tarjeta a juego */
+    --text-primary: #f7fafc;
+    --text-muted: #8892b0;
+    --input-border: #233554;
+    --input-focus: #64ffda; /* Turquesa Neón */
+    --btn-gradient: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%);
+    --btn-hover: linear-gradient(135deg, #00c6ff 0%, #0072ff 100%);
+    --shadow-preset: 0 20px 40px rgba(2, 12, 27, 0.7);
+    --error-bg: #2d1212;
+    --error-color: #fc8181;
 }
 
-/* Reset y Centrado Absoluto Inteligente */
+/* Centrado Absoluto e Impecable en Pantalla */
 body {
-    background: var(--bg-page);
+    background: var(--bg-gradient);
     color: var(--text-primary);
     font-family: system-ui, -apple-system, sans-serif;
     margin: 0;
     padding: 0;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    align-items: center;         /* Centra de izquierda a derecha */
+    justify-content: center;    /* Centra de arriba a abajo */
     min-height: 100vh;
     box-sizing: border-box;
-    transition: background 0.4s ease, color 0.4s ease;
-    overflow-x: hidden;
+    transition: background 0.4s ease;
 }
 
-/* Botón flotante superior */
-.theme-wrapper {
-    position: absolute;
-    top: 24px;
-    right: 24px;
-    z-index: 10;
+.header-container {
+    margin-bottom: 20px;
 }
 
-.btn-theme {
-    background: var(--bg-card);
+/* Botón de cambio de tema */
+.btn-theme-toggle {
+    background: var(--card-background);
     color: var(--text-primary);
-    border: 1px solid var(--border);
-    padding: 10px 20px;
-    border-radius: 9999px;
+    border: 2px solid var(--input-focus);
+    padding: 10px 24px;
+    border-radius: 30px;
+    font-weight: bold;
     cursor: pointer;
-    font-weight: 600;
-    box-shadow: var(--card-shadow);
-    transition: all 0.2s ease;
+    box-shadow: var(--shadow-preset);
+    transition: all 0.3s ease;
 }
 
-.btn-theme:hover {
-    transform: translateY(-2px);
-    border-color: var(--border-focus);
+.btn-theme-toggle:hover {
+    transform: scale(1.05);
 }
 
-.app-container {
+.center-viewport {
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 20px;
+    padding: 15px;
     box-sizing: border-box;
 }
 
-/* Estilo de la Tarjeta Autenticación */
-.auth-card {
-    background: var(--bg-card);
+/* Diseño de la Tarjeta */
+.colorful-card {
+    background: var(--card-background);
     padding: 40px;
-    border-radius: 20px;
-    box-shadow: var(--card-shadow);
+    border-radius: 24px;
+    box-shadow: var(--shadow-preset);
     width: 100%;
-    max-width: 440px;
+    max-width: 420px;
     box-sizing: border-box;
-    border: 1px solid var(--border);
-}
-
-/* Encabezado Pro de la Marca */
-.brand-header {
     text-align: center;
-    margin-bottom: 30px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.brand-logo {
-    background: var(--primary);
+.card-logo {
+    background: var(--btn-gradient);
     color: white;
-    width: 48px;
-    height: 48px;
-    border-radius: 12px;
+    width: 56px;
+    height: 56px;
+    border-radius: 16px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    font-size: 22px;
+    font-size: 24px;
     font-weight: 800;
-    margin-bottom: 16px;
-    box-shadow: 0 4px 12px var(--primary-glow);
+    margin-bottom: 15px;
+    box-shadow: var(--shadow-preset);
 }
 
-.brand-header h1 {
+.colorful-card h1 {
     font-size: 28px;
-    margin: 0 0 8px 0;
-    font-weight: 700;
-    letter-spacing: -0.5px;
+    margin: 0 0 6px 0;
+    font-weight: 800;
 }
 
-.brand-header p {
-    color: var(--text-secondary);
-    margin: 0;
+.subtitle {
+    color: var(--text-muted);
+    margin: 0 0 30px 0;
     font-size: 15px;
 }
 
-/* Inputs con estados de enfoque interactivos */
-.input-wrapper {
-    margin-bottom: 20px;
-    display: flex;
-    flex-direction: column;
+.input-group {
+    margin-bottom: 22px;
+    text-align: left;
 }
 
-.input-wrapper label {
+.input-group label {
+    display: block;
     font-size: 13px;
-    font-weight: 600;
+    font-weight: 700;
     margin-bottom: 8px;
-    color: var(--text-primary);
     text-transform: uppercase;
-    letter-spacing: 0.5px;
 }
 
-.input-wrapper input {
-    padding: 14px;
-    background: var(--bg-card);
-    color: var(--text-primary);
-    border: 1.5px solid var(--border);
-    border-radius: 10px;
-    font-size: 15px;
-    outline: none;
-    transition: all 0.2s ease;
-    box-sizing: border-box;
-}
-
-.input-wrapper input:focus {
-    border-color: var(--border-focus);
-    box-shadow: 0 0 0 4px var(--primary-glow);
-}
-
-/* Botón Pro con micro-interacciones */
-.btn-action {
+.input-group input {
     width: 100%;
     padding: 14px;
-    background: var(--primary);
+    background: var(--card-background);
+    color: var(--text-primary);
+    border: 2px solid var(--input-border);
+    border-radius: 12px;
+    font-size: 15px;
+    outline: none;
+    box-sizing: border-box;
+    transition: all 0.2s ease;
+}
+
+.input-group input:focus {
+    border-color: var(--input-focus);
+}
+
+.btn-gradient {
+    width: 100%;
+    padding: 15px;
+    background: var(--btn-gradient);
     color: white;
     border: none;
-    border-radius: 10px;
+    border-radius: 12px;
     font-size: 16px;
     font-weight: 700;
     cursor: pointer;
+    box-shadow: var(--shadow-preset);
     transition: all 0.2s ease;
-    margin-top: 10px;
-    box-shadow: 0 4px 12px var(--primary-glow);
 }
 
-.btn-action:hover {
-    background: var(--primary-hover);
-    transform: translateY(-1px);
+.btn-gradient:hover {
+    transform: translateY(-2px);
 }
 
-.btn-action:active {
-    transform: translateY(1px);
-}
-
-/* Enlaces inferiores */
-.footer-switch {
-    text-align: center;
-    margin-top: 24px;
+.switch-mode-text {
+    margin-top: 25px;
     font-size: 14px;
-    color: var(--text-secondary);
+    color: var(--text-muted);
 }
 
-.footer-switch a {
-    color: var(--primary);
+.switch-mode-text a {
+    color: var(--input-focus);
     text-decoration: none;
-    font-weight: 600;
+    font-weight: 700;
 }
 
-.footer-switch a:hover {
-    text-decoration: underline;
-}
-
-/* Alertas estilizadas flotantes en la tarjeta */
-.toast-error {
+.alert-box-error {
     background: var(--error-bg);
-    color: var(--error-text);
+    color: var(--error-color);
     padding: 12px;
-    border-radius: 8px;
+    border-radius: 10px;
     margin-top: 20px;
     font-size: 14px;
-    font-weight: 600;
-    text-align: center;
+    font-weight: 700;
     display: none;
 }
 
-.toast-error:not(:empty) {
+.alert-box-error:not(:empty) {
     display: block;
 }
 
-/* Modificadores lógicos de control visual */
+/* ESTA REGLA ES CRUCIAL: Oculta el registro por defecto */
 .hidden {
     display: none !important;
 }
 
-/* Animaciones Fluidas (Efecto Pro) */
-.animate-fade {
-    animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+.dynamic-fade {
+    animation: transitionEffect 0.4s ease-out;
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; transform: scale(0.96) translateY(10px); }
-    to { opacity: 1; transform: scale(1) translateY(0); }
+@keyframes transitionEffect {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
-/* Galería Avanzada de Avatares */
-.avatar-picker-box {
-    margin-bottom: 24px;
+.avatar-picker-section {
+    margin-bottom: 25px;
+    text-align: left;
 }
 
-.avatar-picker-box label {
-    font-size: 13px;
-    font-weight: 600;
-    display: block;
-    margin-bottom: 8px;
-}
-
-#avatar-search {
-    padding: 10px;
-    font-size: 13px;
-    margin-bottom: 10px;
-}
-
-#avatar-container {
+.scroll-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 10px;
     max-height: 120px;
     overflow-y: auto;
-    border: 1px solid var(--border);
+    border: 2px solid var(--input-border);
     padding: 10px;
-    border-radius: 10px;
-    background: rgba(0, 0, 0, 0.01);
+    border-radius: 12px;
 }
 
 .avatar-item {
     width: 100%;
     aspect-ratio: 1;
-    border: 2px solid transparent;
-    border-radius: 8px;
+    border: 3px solid transparent;
+    border-radius: 10px;
     cursor: pointer;
-    background: #f1f5f9;
+    background: white;
     padding: 4px;
     box-sizing: border-box;
-    transition: all 0.15s ease;
-}
-
-.avatar-item:hover {
-    transform: scale(1.05);
 }
 
 .avatar-item.selected {
-    border-color: var(--border-focus);
-    background: var(--primary-glow);
-    transform: scale(1.05);
-}
-
-/* Scrollbar personalizada minimalista */
-.custom-scrollbar::-webkit-scrollbar {
-    width: 6px;
-}
-.custom-scrollbar::-webkit-scrollbar-track {
-    background: transparent;
-}
-.custom-scrollbar::-webkit-scrollbar-thumb {
-    background: var(--border);
-    border-radius: 10px;
+    border-color: var(--input-focus);
 }

@@ -3,36 +3,36 @@
 // ==========================================
 const themeToggle = document.getElementById('theme-toggle');
 
-function aplicarTemaPremium(tema) {
-    if (tema === 'dark') {
+function mutarTemaColor(modo) {
+    if (modo === 'dark') {
         document.body.classList.add('theme-dark');
-        themeToggle.innerHTML = '☀️ Modo Día';
+        themeToggle.innerHTML = '☀️ Modo Claro';
     } else {
         document.body.classList.remove('theme-dark');
-        themeToggle.innerHTML = '🌙 Modo Noche';
+        themeToggle.innerHTML = '🌙 Modo Oscuro';
     }
 }
 
-// Inicialización inteligente con preferencias de sistema/Google
-const cachedTheme = localStorage.getItem('theme');
-const systemDarkPref = window.matchMedia('(prefers-color-scheme: dark)').matches;
+// Carga inicial (lee la caché de la cuenta o el sistema)
+const modoGuardado = localStorage.getItem('theme');
+const prefiereOscuroSistema = window.matchMedia('(prefers-color-scheme: dark)').matches;
 
-if (cachedTheme) {
-    aplicarTemaPremium(cachedTheme);
-} else if (systemDarkPref) {
-    aplicarTemaPremium('dark');
+if (modoGuardado) {
+    mutarTemaColor(modoGuardado);
+} else if (prefiereOscuroSistema) {
+    mutarTemaColor('dark');
 }
 
-// Evento de intercambio ágil (Click)
+// Cambiar de modo al hacer un clic en el botón superior
 themeToggle.addEventListener('click', () => {
-    const isDark = document.body.classList.contains('theme-dark');
-    const nuevoTema = isDark ? 'light' : 'dark';
-    aplicarTemaPremium(nuevoTema);
-    localStorage.setItem('theme', nuevoTema);
+    const esOscuro = document.body.classList.contains('theme-dark');
+    const proximoTema = esOscuro ? 'light' : 'dark';
+    mutarTemaColor(proximoTema);
+    localStorage.setItem('theme', proximoTema);
 });
 
 // ==========================================
-// 2. INTERRUPTOR DINÁMICO DE PANTALLAS (SINGLE-PAGE)
+// 2. CONMUTADOR DE SECCIONES (SIN CAMBIAR DE PÁGINA)
 // ==========================================
 const loginSection = document.getElementById('login-section');
 const registerSection = document.getElementById('register-section');
@@ -41,7 +41,6 @@ const linkToLogin = document.getElementById('link-to-login');
 
 linkToRegister.addEventListener('click', (e) => {
     e.preventDefault();
-    // Ejecuta transición Pro animada de salida/entrada
     loginSection.classList.add('hidden');
     registerSection.classList.remove('hidden');
 });
@@ -53,60 +52,74 @@ linkToLogin.addEventListener('click', (e) => {
 });
 
 // ==========================================
-// 3. BASE DE DATOS LOCALPERSISTENTE (LOCALSTORAGE)
+// 3. BASE DE DATOS LOCAL CON LOS 3 USUARIOS SOLICITADOS
 // ==========================================
 if (!localStorage.getItem('usuarios_sgg')) {
-    const cuentaAdminPrevia = [
-        { username: "admin", email: "admin@gmail.com", password: "password123", avatar: "https://api.dicebear.com/7.x/bottts/svg?seed=admin" }
+    const defaultData = [
+        { 
+            username: "usuario1", 
+            email: "usuario1@gmail.com", 
+            password: "clave2", // Contiene el número par 2
+            avatar: "https://api.dicebear.com/7.x/bottts/svg?seed=gato" 
+        },
+        { 
+            username: "usuario2", 
+            email: "usuario2@yahoo.com", 
+            password: "passUser2", 
+            avatar: "https://api.dicebear.com/7.x/bottts/svg?seed=robot" 
+        },
+        { 
+            username: "usuario3", 
+            email: "usuario3@gmail.com", 
+            password: "passUser3", 
+            avatar: "https://api.dicebear.com/7.x/bottts/svg?seed=ninja" 
+        }
     ];
-    localStorage.setItem('usuarios_sgg', JSON.stringify(cuentaAdminPrevia));
+    localStorage.setItem('usuarios_sgg', JSON.stringify(defaultData));
 }
 
-function descargarUsuarios() {
+function leerDB() {
     return JSON.parse(localStorage.getItem('usuarios_sgg'));
 }
 
-// ==========================================
-// 4. GENERADOR Y BUSCADOR DE AVATARES GENÉRICOS
-// ==========================================
 const avatarContainer = document.getElementById('avatar-container');
 const avatarSearch = document.getElementById('avatar-search');
 const hiddenAvatarUrl = document.getElementById('selected-avatar-url');
 
-const semillasAvatares = ["gato", "perro", "robot", "zorro", "oso", "buho", "gamer", "ninja", "astronauta", "fuego"];
+const coleccionAvatares = ["gato", "perro", "robot", "zorro", "oso", "buho", "gamer", "ninja", "astronauta", "fuego"];
 
-function construirCatalogoAvatares(filtro = "") {
+function crearGaleriaAvatares(filtro = "") {
     avatarContainer.innerHTML = "";
-    const filtrados = semillasAvatares.filter(s => s.includes(filtro.toLowerCase()));
-    const listaDefinitiva = filtrados.length > 0 ? filtrados : ["misterio", "codigo"];
+    const filtrados = coleccionAvatares.filter(s => s.includes(filtro.toLowerCase()));
+    const finalLista = filtrados.length > 0 ? filtrados : ["misterio"];
 
-    listaDefinitiva.forEach((keyword, index) => {
-        const linkConstruido = `https://api.dicebear.com/7.x/bottts/svg?seed=${keyword}`;
-        const imgNode = document.createElement('img');
-        imgNode.src = linkConstruido;
-        imgNode.classList.add('avatar-item');
-        imgNode.alt = `Avatar ${keyword}`;
+    finalLista.forEach((key, index) => {
+        const link = `https://api.dicebear.com/7.x/bottts/svg?seed=${key}`;
+        const img = document.createElement('img');
+        img.src = link;
+        img.classList.add('avatar-item');
+        img.alt = key;
 
         if (index === 0 && filtro === "") {
-            imgNode.classList.add('selected');
-            hiddenAvatarUrl.value = linkConstruido;
+            img.classList.add('selected');
+            hiddenAvatarUrl.value = link;
         }
 
-        imgNode.addEventListener('click', () => {
-            document.querySelectorAll('.avatar-item').forEach(el => el.classList.remove('selected'));
-            imgNode.classList.add('selected');
-            hiddenAvatarUrl.value = linkConstruido;
+        img.addEventListener('click', () => {
+            document.querySelectorAll('.avatar-item').forEach(i => i.classList.remove('selected'));
+            img.classList.add('selected');
+            hiddenAvatarUrl.value = link;
         });
 
-        avatarContainer.appendChild(imgNode);
+        avatarContainer.appendChild(img);
     });
 }
 
-avatarSearch.addEventListener('input', (e) => construirCatalogoAvatares(e.target.value));
-construirCatalogoAvatares(); // Carga inicial limpia
+avatarSearch.addEventListener('input', (e) => crearGaleriaAvatares(e.target.value));
+crearGaleriaAvatares();
 
 // ==========================================
-// 5. REGISTRO Y VALIDACIÓN DE DOMINIOS ADMITIDOS
+// 4. ENVÍO DE REGISTRO CON FILTRO DE CORREO SOLICITADO
 // ==========================================
 const registerForm = document.getElementById('register-form');
 const regError = document.getElementById('reg-error-message');
@@ -120,36 +133,33 @@ registerForm.addEventListener('submit', (e) => {
 
     regError.textContent = "";
 
-    // Validación estricta solicitada
-    const esGmail = email.endsWith('@gmail.com');
-    const esYahoo = email.endsWith('@yahoo.com');
-    const esYahoot = email.endsWith('@yahoot.com');
+    // Validación estricta de dominios admitidos
+    const valido = email.endsWith('@gmail.com') || email.endsWith('@yahoo.com') || email.endsWith('@yahoot.com');
 
-    if (!esGmail && !esYahoo && !esYahoot) {
-        regError.textContent = "Error de Dominio: Solo se admiten correos @gmail.com, @yahoo.com o @yahoot.com";
+    if (!valido) {
+        regError.textContent = "Error: El correo electrónico obligatorio debe ser @gmail.com o @yahoo.com.";
         return;
     }
 
-    const DB = descargarUsuarios();
+    const baseUsuarios = leerDB();
 
-    if (DB.some(u => u.username === user || u.email === email)) {
-        regError.textContent = "Error: El nombre de usuario o correo ya existen en el sistema.";
+    if (baseUsuarios.some(u => u.username === user || u.email === email)) {
+        regError.textContent = "Error: Este usuario o correo ya se encuentra registrado.";
         return;
     }
 
-    // Inserción en memoria permanente
-    DB.push({ username: user, email, password: pass, avatar });
-    localStorage.setItem('usuarios_sgg', JSON.stringify(DB));
+    baseUsuarios.push({ username: user, email, password: pass, avatar });
+    localStorage.setItem('usuarios_sgg', JSON.stringify(baseUsuarios));
 
-    alert("¡Cuenta Pro Creada! Iniciando tu sesión de forma automática...");
-
-    // Auto-login al registrarse de forma exitosa
+    alert("¡Cuenta Creada! Iniciando sesión de forma automática...");
+    
+    // Auto-login instantáneo al registrarse con éxito
     localStorage.setItem('usuario_sesion_activa', JSON.stringify({ username: user, email, avatar }));
-    location.reload(); 
+    location.reload();
 });
 
 // ==========================================
-// 6. CONTROLADOR DE INICIO DE SESIÓN SEGURO
+// 5. INICIO DE SESIÓN Y GUARDADO DE CUENTA
 // ==========================================
 const loginForm = document.getElementById('login-form');
 const loginError = document.getElementById('error-message');
@@ -160,27 +170,27 @@ loginForm.addEventListener('submit', (e) => {
     const passInput = document.getElementById('password').value;
 
     loginError.textContent = "";
-    const DB_Usuarios = descargarUsuarios();
+    const listado = leerDB();
 
-    const cuentaEncontrada = DB_Usuarios.find(u => u.username === userInput || u.email === userInput);
+    const matchUser = listado.find(u => u.username === userInput || u.email === userInput);
 
-    if (!cuentaEncontrada) {
-        loginError.textContent = "Error: El usuario o correo no coinciden con nuestros registros.";
+    if (!matchUser) {
+        loginError.textContent = "Error: Credenciales inválidas o no registradas.";
         return;
     }
 
-    if (cuentaEncontrada.password !== passInput) {
-        loginError.textContent = "Error: La contraseña ingresada es incorrecta.";
+    if (matchUser.password !== passInput) {
+        loginError.textContent = "Error: La contraseña es incorrecta.";
         return;
     }
 
-    // Guardado de estado exitoso de la sesión
+    // SE GUARDA LA CUENTA UNA VEZ SE INICIA SESIÓN
     localStorage.setItem('usuario_sesion_activa', JSON.stringify({
-        username: cuentaEncontrada.username,
-        email: cuentaEncontrada.email,
-        avatar: cuentaEncontrada.avatar
+        username: matchUser.username,
+        email: matchUser.email,
+        avatar: matchUser.avatar
     }));
 
-    alert(`¡Bienvenido al SGG, ${cuentaEncontrada.username}! Sesión guardada.`);
-    console.log("Sesión activa actual verificada:", JSON.parse(localStorage.getItem('usuario_sesion_activa')));
+    alert(`¡Sesión Guardada! Bienvenido/a, ${matchUser.username}.`);
+    console.log("Sesión activa recuperada del LocalStorage:", JSON.parse(localStorage.getItem('usuario_sesion_activa')));
 });

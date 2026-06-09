@@ -1,43 +1,25 @@
-// ==========================================
-// BASE DE DATOS LOCAL CON LOS 3 USUARIOS SOLICITADOS
-// ==========================================
-if (!localStorage.getItem('usuarios_sgg')) {
-    const defaultData = [
-        { username: "usuario1", password: "clave2" },  // Número par (2) incluido
-        { username: "usuario2", password: "passUser2" },
-        { username: "usuario3", password: "passUser3" }
-    ];
-    localStorage.setItem('usuarios_sgg', JSON.stringify(defaultData));
-}
+// Las 2 cuentas pregeneradas solicitadas
+const cuentasValidas = {
+    "usuario1": "clave123",
+    "admin": "admin2026"
+};
 
-const loginForm = document.getElementById('login-form');
-const loginError = document.getElementById('error-message');
+function validarLogin(event) {
+    // CONSERVA la información en los inputs evitando que la página se recargue
+    event.preventDefault(); 
 
-loginForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    
-    const userInput = document.getElementById('username').value.trim();
-    const passInput = document.getElementById('password').value;
+    const usuarioIngresado = document.getElementById('username').value.trim();
+    const contrasenaIngresada = document.getElementById('password').value;
+    const mensajeDiv = document.getElementById('mensajeResultado');
 
-    // Resetear visualización del error
-    loginError.textContent = "";
-    loginError.style.display = "none";
-
-    // Traer usuarios del localStorage
-    const listadoUsuarios = JSON.parse(localStorage.getItem('usuarios_sgg'));
-
-    // Buscar si existe el usuario ingresado
-    const matchUser = listadoUsuarios.find(u => u.username === userInput);
-
-    // Validación unificada para evitar dar pistas a atacantes
-    if (!matchUser || matchUser.password !== passInput) {
-        // Texto de error exacto solicitado
-        loginError.textContent = "contraseña/usuario equivocado";
-        loginError.style.display = "block";
-        return;
+    // Validación estricta que se ejecuta solo al presionar el botón
+    if (cuentasValidas[usuarioIngresado] && cuentasValidas[usuarioIngresado] === contrasenaIngresada) {
+        // Mensaje exacto solicitado en caso de éxito
+        mensajeDiv.textContent = "Felicidades su cuenta se conectó perfectamente";
+        mensajeDiv.className = "message success";
+    } else {
+        // Mensaje en caso de error
+        mensajeDiv.textContent = "Usuario o contraseña incorrectos.";
+        mensajeDiv.className = "message error";
     }
-
-    // Si todo es correcto, guardamos la sesión e indicamos al navegador ir a dashboard.html
-    localStorage.setItem('usuario_actual_sgg', matchUser.username);
-    window.location.href = 'dashboard.html';
-});
+}

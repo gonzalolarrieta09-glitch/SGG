@@ -3,151 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inicio de Sesión</title>
-    <style>
-        /* Fondo azul grisáceo y centrado absoluto */
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #34495e; /* Azul grisáceo */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
-
-        /* Contenedor del formulario */
-        .login-container {
-            background-color: #ffffff; /* Fondo blanco para resaltar las letras negras */
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-            width: 100%;
-            max-width: 350px;
-            text-align: center;
-        }
-
-        /* Título y textos en color negro obligatorio */
-        h2 {
-            margin-bottom: 20px;
-            font-weight: 600;
-            color: #000000; /* Letras negras */
-        }
-
-        .input-group {
-            margin-bottom: 20px;
-            text-align: left;
-        }
-
-        /* Etiquetas en negro */
-        label {
-            display: block;
-            margin-bottom: 5px;
-            font-size: 14px;
-            color: #000000; /* Letras negras */
-            font-weight: 500;
-        }
-
-        /* Inputs con letras negras y línea de remarque roja abajo */
-        input {
-            width: 100%;
-            padding: 10px 5px;
-            /* Se quitan los bordes laterales y superior para dejar solo la línea inferior */
-            border: none;
-            border-bottom: 2px solid #ff0000; /* Línea de remarque roja abajo */
-            background-color: transparent;
-            color: #000000; /* Letras negras */
-            box-sizing: border-box;
-            font-size: 16px;
-        }
-
-        /* Efecto cuando el usuario hace clic en el input */
-        input:focus {
-            outline: none;
-            border-bottom: 2px solid #b30000; /* Rojo más oscuro al enfocar */
-        }
-
-        /* Botón de ingreso */
-        button {
-            width: 100%;
-            padding: 12px;
-            background-color: #000000; /* Botón negro para contrastar */
-            border: none;
-            border-radius: 4px;
-            color: #ffffff;
-            font-size: 16px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: background 0.3s;
-            margin-top: 10px;
-        }
-
-        button:hover {
-            background-color: #333333;
-        }
-
-        /* Mensajes de respuesta */
-        .message {
-            margin-top: 15px;
-            font-size: 14px;
-            font-weight: bold;
-        }
-
-        .success {
-            color: #2ecc71; /* Verde para el éxito */
-        }
-
-        .error {
-            color: #ff0000; /* Rojo para el error */
-        }
-    </style>
+    <title>Inicio de Sesión - Proyecto</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-    <div class="login-container">
+    <main class="login-container">
         <h2>Iniciar Sesión</h2>
         
-        <form id="loginForm" onsubmit="validarLogin(event)">
+        <form id="loginForm">
             <div class="input-group">
                 <label for="username">Usuario</label>
-                <input type="text" id="username" required placeholder="Tu usuario">
+                <input type="text" id="username" required autocomplete="username" placeholder="Tu usuario">
             </div>
+            
             <div class="input-group">
                 <label for="password">Contraseña</label>
-                <input type="password" id="password" required placeholder="Tu contraseña">
+                <input type="password" id="password" required autocomplete="current-password" placeholder="Tu contraseña">
             </div>
+            
             <button type="submit">Conectarse</button>
         </form>
         
         <div id="mensajeResultado" class="message"></div>
-    </div>
+    </main>
 
-    <script>
-        // Las 2 cuentas pregeneradas solicitadas
-        const cuentasValidas = {
-            "usuario1": "clave123",
-            "admin": "admin2026"
-        };
-
-        function validarLogin(event) {
-            // DETIENE el reinicio de la página para CONSERVAR la información en los inputs
-            event.preventDefault(); 
-
-            const usuarioIngresado = document.getElementById('username').value.trim();
-            const contrasenaIngresada = document.getElementById('password').value;
-            const mensajeDiv = document.getElementById('mensajeResultado');
-
-            // Verifica si los datos coinciden con alguna de las 2 cuentas
-            if (cuentasValidas[usuarioIngresado] && cuentasValidas[usuarioIngresado] === contrasenaIngresada) {
-                // Mensaje exacto solicitado
-                mensajeDiv.textContent = "Felicidades su cuenta se conectó perfectamente";
-                mensajeDiv.className = "message success";
-            } else {
-                mensajeDiv.textContent = "Usuario o contraseña incorrectos.";
-                mensajeDiv.className = "message error";
-            }
-        }
-    </script>
-
+    <script src="login.js"></script>
 </body>
 </html>

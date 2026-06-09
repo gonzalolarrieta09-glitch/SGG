@@ -1,7 +1,18 @@
-/* Fondo azul grisáceo y centrado absoluto */
+/* Configuración de colores del proyecto */
+:root {
+    --bg-main: #34495e;       /* Azul grisáceo de fondo */
+    --bg-card: #ffffff;       /* Fondo blanco del contenedor */
+    --text-dark: #000000;     /* Letras negras obligatorias */
+    --line-red: #ff0000;      /* Línea de remarque roja abajo */
+    --line-red-focus: #b30000;/* Línea al hacer clic */
+    --btn-bg: #000000;        /* Botón negro */
+    --btn-hover: #222222;
+    --success-green: #2ecc71; /* Verde para éxito */
+}
+
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #34495e; /* Azul grisáceo */
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    background-color: var(--bg-main);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -9,69 +20,82 @@ body {
     margin: 0;
 }
 
-/* Contenedor del formulario */
 .login-container {
-    background-color: #ffffff; /* Fondo blanco */
-    padding: 30px;
-    border-radius: 8px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    background-color: var(--bg-card);
+    padding: 35px;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
     width: 100%;
-    max-width: 350px;
+    max-width: 360px;
     text-align: center;
 }
 
-/* Título y textos en color negro */
 h2 {
-    margin-bottom: 20px;
-    font-weight: 600;
-    color: #000000;
+    margin: 0 0 25px 0;
+    font-weight: 700;
+    color: var(--text-dark);
 }
 
 .input-group {
-    margin-bottom: 20px;
+    margin-bottom: 22px;
     text-align: left;
 }
 
 label {
     display: block;
-    margin-bottom: 5px;
+    margin-bottom: 6px;
     font-size: 14px;
-    color: #000000;
-    font-weight: 500;
+    color: var(--text-dark);
+    font-weight: 600;
 }
 
-/* Inputs con letras negras y línea de remarque roja abajo */
+/* Inputs con diseño de línea inferior roja y letras negras */
 input {
     width: 100%;
-    padding: 10px 5px;
+    padding: 10px 4px;
     border: none;
-    border-bottom: 2px solid #ff0000; /* Línea roja */
+    border-bottom: 2px solid var(--line-red);
     background-color: transparent;
-    color: #000000;
+    color: var(--text-dark);
     box-sizing: border-box;
     font-size: 16px;
+    transition: border-color 0.3s ease;
 }
 
 input:focus {
     outline: none;
-    border-bottom: 2px solid #b30000; /* Rojo más oscuro al hacer clic */
+    border-bottom-color: var(--line-red-focus);
 }
 
-/* Botón de ingreso */
 button {
     width: 100%;
     padding: 12px;
-    background-color: #000000;
+    background-color: var(--btn-bg);
     border: none;
-    border-radius: 4px;
+    border-radius: 6px;
     color: #ffffff;
     font-size: 16px;
     cursor: pointer;
     font-weight: bold;
     margin-top: 10px;
+    transition: background-color 0.2s ease;
 }
 
-/* Mensajes de respuesta */
+button:hover {
+    background-color: var(--btn-hover);
+}
+
 .message {
-    margin-top: 15px;
-    font-
+    margin-top: 20px;
+    font-size: 14px;
+    font-weight: 700;
+    min-height: 20px;
+}
+
+.success {
+    color: var(--success-green);
+}
+
+.error {
+    color: var(--line-red);
+}

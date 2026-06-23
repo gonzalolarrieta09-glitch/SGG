@@ -1,101 +1,155 @@
-/* Configuración de colores del proyecto */
-:root {
-    --bg-main: #34495e;       /* Azul grisáceo de fondo */
-    --bg-card: #ffffff;       /* Fondo blanco del contenedor */
-    --text-dark: #000000;     /* Letras negras obligatorias */
-    --line-red: #ff0000;      /* Línea de remarque roja abajo */
-    --line-red-focus: #b30000;/* Línea al hacer clic */
-    --btn-bg: #000000;        /* Botón negro */
-    --btn-hover: #222222;
-    --success-green: #2ecc71; /* Verde para éxito */
+/* Fondo Azul Marino Oscuro y Centrado Absoluto */
+body {
+    background: linear-gradient(135deg, #020c1b 0%, #0a192f 50%, #172a45 100%);
+    color: #f7fafc;
+    font-family: system-ui, -apple-system, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;         
+    justify-content: center;    
+    min-height: 100vh;
+    box-sizing: border-box;
 }
 
-body {
-    font-family: 'Segoe UI', system-ui, sans-serif;
-    background-color: var(--bg-main);
+.center-viewport {
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    margin: 0;
+    padding: 20px;
+    box-sizing: border-box;
 }
 
-.login-container {
-    background-color: var(--bg-card);
-    padding: 35px;
-    border-radius: 12px;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+.login-card {
+    background: rgba(10, 25, 47, 0.95);
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(2, 12, 27, 0.7);
     width: 100%;
-    max-width: 360px;
+    max-width: 400px;
+    box-sizing: border-box;
     text-align: center;
+    border: 1px solid rgba(100, 255, 218, 0.1);
 }
 
-h2 {
-    margin: 0 0 25px 0;
+.card-logo {
+    background: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%);
+    color: white;
+    width: 55px;
+    height: 55px;
+    border-radius: 14px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+h1 {
+    font-size: 22px;
+    margin: 0 0 8px 0;
     font-weight: 700;
-    color: var(--text-dark);
+}
+
+.subtitle {
+    color: #8892b0;
+    margin: 0 0 25px 0;
+    font-size: 13px;
 }
 
 .input-group {
-    margin-bottom: 22px;
+    margin-bottom: 20px;
     text-align: left;
 }
 
-label {
+.input-group label {
     display: block;
-    margin-bottom: 6px;
-    font-size: 14px;
-    color: var(--text-dark);
+    font-size: 12px;
     font-weight: 600;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    color: #64ffda;
+    letter-spacing: 0.5px;
 }
 
-/* Inputs con diseño de línea inferior roja y letras negras */
-input {
+.input-group input {
     width: 100%;
-    padding: 10px 4px;
-    border: none;
-    border-bottom: 2px solid var(--line-red);
-    background-color: transparent;
-    color: var(--text-dark);
-    box-sizing: border-box;
-    font-size: 16px;
-    transition: border-color 0.3s ease;
-}
-
-input:focus {
+    padding: 14px;
+    background: #172a45;
+    color: #f7fafc;
+    border: 2px solid #233554;
+    border-radius: 10px;
+    font-size: 15px;
     outline: none;
-    border-bottom-color: var(--line-red-focus);
+    box-sizing: border-box;
+    transition: border-color 0.2s;
 }
 
-button {
+.input-group input:focus {
+    border-color: #64ffda;
+}
+
+.btn-submit {
     width: 100%;
-    padding: 12px;
-    background-color: var(--btn-bg);
+    padding: 14px;
+    background: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%);
+    color: #020c1b;
     border: none;
-    border-radius: 6px;
-    color: #ffffff;
+    border-radius: 10px;
     font-size: 16px;
+    font-weight: 700;
     cursor: pointer;
-    font-weight: bold;
-    margin-top: 10px;
-    transition: background-color 0.2s ease;
+    transition: transform 0.2s;
 }
 
-button:hover {
-    background-color: var(--btn-hover);
+.btn-submit:hover {
+    transform: translateY(-2px);
 }
 
-.message {
+.switch-text {
     margin-top: 20px;
     font-size: 14px;
-    font-weight: 700;
-    min-height: 20px;
+    color: #8892b0;
 }
 
-.success {
-    color: var(--success-green);
+.switch-text a {
+    color: #64ffda;
+    text-decoration: none;
+    font-weight: bold;
 }
 
-.error {
-    color: var(--line-red);
+.switch-text a:hover {
+    text-decoration: underline;
+}
+
+.alert-error {
+    background: #2d1212;
+    color: #fc8181;
+    padding: 12px;
+    border-radius: 8px;
+    margin-top: 20px;
+    font-size: 14px;
+    font-weight: bold;
+    border: 1px solid #e53e3e;
+    display: none;
+    text-align: center;
+}
+
+.btn-logout {
+    margin-top: 30px;
+    background: #233554;
+    color: #f7fafc;
+}
+
+.welcome-text {
+    color: #64ffda;
+    font-size: 20px;
+    margin-top: 15px;
+}
+
+/* ESTA REGLA EVITA QUE SE VEAN LOS DOS FORMULARIOS JUNTOS */
+.hidden {
+    display: none !important;
 }

@@ -1,4 +1,4 @@
-// Inicializar tus 2 cuentas válidas originales si no existen en el almacenamiento
+Inicializar tus 2 cuentas válidas originales si no existen en el almacenamiento
 if (!localStorage.getItem("cuentasSGG")) {
     const cuentasIniciales = {
         usuario1: "clave123",
